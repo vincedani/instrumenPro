@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "processInstrumentation": {
+      "commandName": "Project",
+      "commandLineArgs": "tesztElek.txt"
+    }
+  }
+}
