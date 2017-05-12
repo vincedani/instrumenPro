@@ -51,6 +51,7 @@ namespace processInstrumentation
                                 functions.Add(new KeyValuePair<string, InstrumentRowType>(key, temp));
                             }
                             break;
+                        // x 0x2518de0 0x306e4b6 1494409547 824777303
                         case "x":
                             var iEnumerable = functions.Where(x => x.Key.Equals(key));
                             if (iEnumerable.Any())
@@ -58,7 +59,12 @@ namespace processInstrumentation
                                 var temp = iEnumerable.First();
                                 temp.Value.Count++;
 
-                                var time = temp.Value.Stack.Pop();
+                                OutputTime time;
+                                if (temp.Value.Stack.Any())
+                                    time = temp.Value.Stack.Pop();
+                                else
+                                    continue;
+
 
                                 ulong nanoSeconds;
                                 ulong seconds = ulong.Parse(columns[3]) - time.Secundum;
