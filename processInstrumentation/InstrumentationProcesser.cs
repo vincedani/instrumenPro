@@ -46,8 +46,17 @@ namespace processInstrumentation
                 {
                     foreach (var callSide in rowsWhereThisCalled)
                     {
-                        element.Secundum -= callSide.Secundum;
-                        element.NanoSecundum -= callSide.NanoSecundum;
+                        long overflowCheck = (long)element.NanoSecundum - (long)callSide.NanoSecundum;
+                        if(overflowCheck < 0)
+                        {
+                            element.Secundum -= callSide.Secundum + 1;
+                            element.NanoSecundum = 999999999 - (callSide.NanoSecundum - element.NanoSecundum);
+                        }
+                        else
+                        {
+                            element.Secundum -= callSide.Secundum;
+                            element.NanoSecundum -= callSide.NanoSecundum;
+                        }
                     }
                 }
                 normalizedResults.Add(element);
@@ -104,6 +113,7 @@ namespace processInstrumentation
                         else
                         {
                             nanoSeconds = (999999999 - time.NanoSecundum) + currentNs;
+                            seconds -= 1;
                         }
 
                         ulong overflowCheck = temp.Value.Summary.NanoSecundum + nanoSeconds;
