@@ -13,23 +13,24 @@ namespace processInstrumentation
         public List<KeyValuePair<string, InstrumentRowType>> BeginProcess(string fileName)
         {
             var functions = new List<KeyValuePair<string, InstrumentRowType>>();
-            var fileStream = new FileStream(fileName, FileMode.Open);
-
-            using (var reader = new StreamReader(fileStream))
+            using (var fileStream = new FileStream(fileName, FileMode.Open))
             {
-                string row;
-                while ((row = reader.ReadLine()) != null)
+                using (var reader = new StreamReader(fileStream))
                 {
-                    try
+                    string row;
+                    while ((row = reader.ReadLine()) != null)
                     {
-                        ProcessRow(functions, row);
+                        try
+                        {
+                            ProcessRow(functions, row);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(string.Concat("An exception has thrown: ", e.Message,
+                                " Row: ", row));
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(string.Concat("An exception has thrown: ", e.Message,
-                            " Row: ", row));
-                    }
-                } 
+                }
             }
             return functions;
         }
@@ -47,7 +48,7 @@ namespace processInstrumentation
                     foreach (var callSide in rowsWhereThisCalled)
                     {
                         long overflowCheck = (long)element.NanoSecundum - (long)callSide.NanoSecundum;
-                        if(overflowCheck < 0)
+                        if (overflowCheck < 0)
                         {
                             element.Secundum -= callSide.Secundum + 1;
                             element.NanoSecundum = 999999999 - (callSide.NanoSecundum - element.NanoSecundum);
