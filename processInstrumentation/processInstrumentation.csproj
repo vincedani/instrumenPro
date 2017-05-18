@@ -7,6 +7,7 @@
 
   <PropertyGroup>
     <RuntimeIdentifiers>win10-x64;ubuntu.16-x64</RuntimeIdentifiers>
+    <AssemblyName>instruPro</AssemblyName>
   </PropertyGroup>
   
   <ItemGroup>

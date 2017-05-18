@@ -35,7 +35,7 @@ namespace processInstrumentation
             return functions;
         }
 
-        public List<NormalizedRowType> NormalizeResults(List<NormalizedRowType> primaryResult)
+        public IEnumerable<NormalizedRowType> NormalizeResults(List<NormalizedRowType> primaryResult)
         {
             var normalizedResults = new List<NormalizedRowType>();
 
@@ -62,13 +62,13 @@ namespace processInstrumentation
                 }
                 normalizedResults.Add(element);
             }
-            return normalizedResults;
+            return normalizedResults.OrderBy(x => x.Secundum).ThenBy(x => x.NanoSecundum);
         }
 
         private static void ProcessRow(ICollection<KeyValuePair<string, InstrumentRowType>> functions, string row)
         {
             var columns = row.Split(' ');
-            string key = string.Concat(columns[1], " ", columns[2]);
+            string key = string.Concat(columns[1].Trim(), " ", columns[2].Trim());
 
             switch (columns[0])
             {

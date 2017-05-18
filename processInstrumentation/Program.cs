@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using processInstrumentation.Models;
 
@@ -37,8 +38,6 @@ namespace processInstrumentation
             }
             else
             {
-
-
                 if (args.Length != 1)
                 {
                     Console.Error.WriteLine("Wrong argument list!");
