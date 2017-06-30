@@ -7,8 +7,6 @@ namespace processInstrumentation
 {
     class Program
     {
-        // ReSharper disable once ArrangeTypeMemberModifiers
-        // ReSharper disable once UnusedMember.Local
         static void Main(string[] args)
         {
             if (args.Contains("--parse"))
@@ -67,7 +65,6 @@ namespace processInstrumentation
                 var normalizedTime = DateTime.Now;
                 foreach (var element in secondList)
                 {
-                    // ReSharper disable once UseStringInterpolation
                     string row = string.Format("{0} {1} {2} {3} {4}", element.Function, element.Caller,
                         element.Secundum, element.NanoSecundum, element.Count);
                     Console.WriteLine(row);

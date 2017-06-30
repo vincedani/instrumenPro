@@ -9,11 +9,7 @@
     <RuntimeIdentifiers>win10-x64;ubuntu.16-x64</RuntimeIdentifiers>
     <AssemblyName>instruPro</AssemblyName>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <None Remove="intelRes.out" />
-  </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
   </ItemGroup>
