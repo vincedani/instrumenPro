@@ -39,7 +39,7 @@ x 0x2851b80 0x306e4bb 1494409547  824790668
   [Getting started with .NET Core on Windows/Linux/macOS using the command line](https://docs.microsoft.com/hu-hu/dotnet/articles/core/tutorials/using-with-xplat-cli)
   * Follow the instructions
 
-### Usuage
+### Usage
   * Terminal: dotnet run `path`
   * `path` : for the instrumentation's log file
     
