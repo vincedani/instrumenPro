@@ -19,7 +19,7 @@ extern "C" {
 
   void __cyg_profile_func_exit (void *func, void *caller) {
     clock_gettime(CLOCK_REALTIME, &time2);
-    fprintf(stderr, "e %p %p %lu %lu\n", func, caller, time2.tv_sec, time2.tv_nsec);
+    fprintf(stderr, "x %p %p %lu %lu\n", func, caller, time2.tv_sec, time2.tv_nsec);
 
   }
 } // extern "C"
